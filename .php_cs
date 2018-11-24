@@ -2,8 +2,13 @@
 
 declare(strict_types=1);
 $finder = PhpCsFixer\Finder::create()
-	->exclude('.repositories')
-	->in(__DIR__);
+	->in(__DIR__)
+	->exclude(['bootstrap', 'storage', 'vendor', '.repositories'])
+    ->name('*.php')
+    ->name('.phpstorm.helper')
+    ->notName('*.blade.php')
+    ->ignoreDotFiles(true)
+    ->ignoreVCS(true);
 
 return PhpCsFixer\Config::create()
 	->setRules([
