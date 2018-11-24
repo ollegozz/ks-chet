@@ -15,9 +15,10 @@ class CreateAccountsTable extends Migration
     {
         Schema::create('accounts', function (Blueprint $table) {
             $table->increments('id');
-            $table->char('ls', 4);
+            $table->string('name')->nullable();
+            $table->char('ls', 15);
             $table->string('house_number')->nullable();
-            $table->string('email')->unique();
+            $table->string('email')->nullable()->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->timestamps();
         });
