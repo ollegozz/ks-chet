@@ -1,18 +1,10 @@
 <?php declare(strict_types=1);
 
 use App\Counter;
-use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 
 class CountersTableSeeder extends Seeder
 {
-    private $faker;
-
-    public function __construct()
-    {
-        $this->faker = Faker::create();
-    }
-
     /**
      * Run the database seeds.
      */
@@ -24,7 +16,7 @@ class CountersTableSeeder extends Seeder
             for ($i = 0; $i < 3; ++$i) {
                 try {
                     Counter::create([
-                        'name'       => 'Счетчик №' . $i++,
+                        'name'       => 'Счетчик №' . ($i + 1),
                         'account_id' => $account->id,
                         'serial'     => random_int(000001, 999999)
                     ]);

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Counter;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +24,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $counters = Counter::query()->where('account_id', auth()->user()->id)->get();
+
+        return view('home', compact('counters'));
     }
 }
