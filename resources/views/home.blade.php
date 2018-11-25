@@ -10,7 +10,7 @@
                     <div class="card-body">
                         @if (session('status'))
                             <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
+                                {{ __(session('status')) }}
                             </div>
                         @endif
 
@@ -19,6 +19,8 @@
                                 <li class="list-group-item"> {{ $counter->name }} - {{ $counter->serial }}</li>
                             @endforeach
                         </ul>
+
+                        @include('counters.form')
                     </div>
                 </div>
             </div>
