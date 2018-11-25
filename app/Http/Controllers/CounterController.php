@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Counter;
+use DB;
 use App\CounterData;
 use Illuminate\Http\Request;
 
@@ -26,7 +26,25 @@ class CounterController extends Controller
      */
     public function sendValue(Request $request)
     {
-        // Todo: Validation, check if new value < old value.
+        $request->validate([
+            'counter_id' => 'required|exists:counters,id',
+            'value'      => [
+                'required',
+                'integer',
+                function ($attribute, $value, $fail) use ($request) {
+
+                    $lastRow = DB::table('counter_data')
+                        ->where('counter_id', $request->input('counter_id'))
+                        ->orderBy('created_at', 'desc')
+                        ->first();
+
+                    if ($value < ($lastRow->value ?? 0)) {
+                        $fail(__('Counter value should not be less'));
+                    }
+
+                },
+            ],
+        ]);
 
         CounterData::create([
             'value'      => $request->input('value'),

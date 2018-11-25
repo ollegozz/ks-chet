@@ -13,5 +13,6 @@
   "Select counter": "Выберите счетчик",
   "You are logged in!": "Вы авторизованы!",
   "Forgot Your Password?": "Забыли пароль?",
+  "Counter value should not be less": "Показания счетчика не должны быть меньше предыдущих.",
   "Counter value has been saved!": "Новые показания счетчика сохранены!"
 }

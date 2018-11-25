@@ -1,15 +1,15 @@
-{!! Form::open(['route' => 'counter.send.value', 'method' => 'post', 'class' => 'mt-3']) !!}
+{!! Form::open(['route' => 'counter.send.value', 'method' => 'post']) !!}
 
 <!-- Counter Form Select -->
 <div class="form-group">
     {{ Form::label('counter', __('Counter') . ':') }}
-    {{ Form::select('counter_id', $counters->pluck('name', 'id'), null, ['class' => 'form-control', 'placeholder' => __('Select counter')]) }}
+    {{ Form::select('counter_id', $counters->pluck('name', 'id'), old('counter_id'), ['class' => 'form-control', 'placeholder' => __('Select counter'), 'required']) }}
 </div>
 
 <!-- Value Form Input -->
 <div class="form-group">
     {{ Form::label('value', __('Value') . ':') }}
-    {{ Form::text('value', null, ['class' => 'form-control']) }}
+    {{ Form::text('value', old('value'), ['class' => 'form-control', 'required']) }}
 </div>
 
 <!-- Form Submit -->
